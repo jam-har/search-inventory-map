@@ -1,4 +1,57 @@
 package com.pluralsight;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Scanner;
 
+// Starter for Search Inventory Map (Workbook 3a, Section 4-1 Using a HashMap, Exercise 2).
+// main is done: it asks for a product id and looks it up in the map.
+// Your job is loadInventory(): put products in the map, the product id as the key.
 public class SearchInventoryMap {
+
+    public static HashMap<Integer, Product> inventory =
+            new HashMap<Integer, Product>();
+
+    public static void main(String[] args) {
+        // this method loads product objects into inventory
+        loadInventory();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("What item # are you interested in? ");
+        int id = scanner.nextInt();
+        Product matchedProduct = inventory.get(id);
+        if (matchedProduct == null) {
+            System.out.println("We don't carry that product");
+        } else {
+            System.out.printf("We carry %s and the price is $%.2f",
+                    matchedProduct.getName(), matchedProduct.getPrice());
+        }
+    }
+
+    private static void loadInventory(){
+        // Your code should be here
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("inventory.csv"));
+            bufferedReader.readLine();                                  // first line is the header: read it and drop it
+
+            String csvLine;
+            while ((csvLine = bufferedReader.readLine()) != null) {
+                String[] tokens = csvLine.split("\\|");
+                int id = Integer.parseInt(tokens[0]);
+                String name = tokens[1];
+                 // every token is text: convert the number
+
+                // One object per line, built from the three values
+                inventory.put(new Product(id, name);
+            }
+            bufferedReader.close();
+        } catch (Exception ex) {
+            System.out.println("Something went wrong!");
+        return inventory;
+
+
+
+
+    }
+
 }
