@@ -37,12 +37,12 @@ public class SearchInventoryMap {
             String csvLine;
             while ((csvLine = bufferedReader.readLine()) != null) {
                 String[] tokens = csvLine.split("\\|");
-                int id = Integer.parseInt(tokens[0]);
+                Integer id = Integer.parseInt(tokens[0]);
                 String name = tokens[1];
                  // every token is text: convert the number
 
                 // One object per line, built from the three values
-                inventory.put(new Product(id, name);
+                inventory.put(Integer.parseInt(Product.getId()), Product.getName());
             }
             bufferedReader.close();
         } catch (Exception ex) {
